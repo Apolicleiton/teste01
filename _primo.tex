@@ -1,0 +1,43 @@
+\input{_resto}
+\input{_while}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{i}
+\newcounter{produto}
+\newcounter{isprime}
+\newcommand{\primo}[1]{%
+	\setcounter{i}{3}
+	\setcounter{isprime}{1}
+	\setcounter{produto}{\value{i}*\value{i}-1}
+	\while{\value{produto} < #1}{%
+		\setcounter{resto}{#1-((#1/(\value{i}))*(\value{i}))}
+		\ifthenelse{\value{resto} = 0}{%
+			\setcounter{isprime}{-1}
+			\setcounter{produto}{#1+1}
+		}{}
+		\addtocounter{i}{2}
+		\setcounter{produto}{\value{i}*\value{i}-1}
+	}
+	% <0 não primo
+	% =1 primo
+	\ifthenelse{\value{isprime} < 0}{}{%
+		\setcounter{isprime}{1}	
+	}
+	%\ifthenelse{#2 = 0}{%
+	%	\theisprime}{}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{limite}
+\newcounter{j}
+\newcommand{\listaPrimo}[2]{%
+	\setcounter{j}{#1}
+	\setcounter{limite}{#2+1}
+	\while{\value{j} < \value{limite}}{%
+		\primo{\value{j}}
+		\ifthenelse{\value{isprime} = 1}{%
+			\thej\hfill\break%
+			\setcounter{isprime}{0}		
+		}{}
+		\addtocounter{j}{2}
+	}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

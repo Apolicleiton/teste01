@@ -1,0 +1,44 @@
+\input{_resto}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{a}
+\newcounter{b}
+\newcounter{aux}
+\newcommand{\fib}[1]{
+    \setcounter{a}{1}
+    \setcounter{b}{2}
+    \while{\value{a}<#1}{
+        \thea\hfill\break
+        \setcounter{aux}{\theb}
+        \setcounter{b}{\value{a}+\value{b}}
+        \setcounter{a}{\value{aux}}
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\fibPar}[1]{
+    \setcounter{a}{1}
+    \setcounter{b}{2}
+    \while{\value{a}<#1}{
+        \calculaResto{\value{a}}{2}
+        \ifthenelse{\value{resto}=0}{\thea\hfill\break}{\relax}
+        \setcounter{aux}{\value{b}}
+        \setcounter{b}{\value{a}+\value{b}}
+        \setcounter{a}{\value{aux}}
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{soma}
+\newcommand{\somafibPar}[1]{
+    \setcounter{a}{1}
+    \setcounter{b}{2}
+    \while{\value{a}<#1}{
+        \calculaResto{\value{a}}{2}
+        \ifthenelse{\value{resto}=0}{
+            \addtocounter{soma}{\value{a}}
+        }{\relax}
+        \setcounter{aux}{\value{b}}
+        \setcounter{b}{\value{a}+\value{b}}
+        \setcounter{a}{\value{aux}}
+    }%\hfill\break
+    \thesoma
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

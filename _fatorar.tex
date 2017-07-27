@@ -1,0 +1,31 @@
+\input{_primo}
+%\input{_resto}
+%\input{_while}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{iFator}
+\newcounter{produtoAux}
+\newcommand{\fatora}[1]{%
+    \calculaResto{#1}{2}
+    \ifthenelse{\value{resto}=0}{2\hfill\break}{}
+    \setcounter{iFator}{3}
+    \setcounter{produtoAux}{\value{iFator}*\value{iFator}}
+    \while{\value{produtoAux}<#1}{%
+        \primo{\value{iFator}}
+        %isprime=\theisprime
+        \ifthenelse{\value{isprime}>0}{%
+            \calculaResto{#1}{\value{iFator}}
+         %   resto=\theresto
+            \ifthenelse{\value{resto}=0}{\theiFator\hfill\break}{}
+        }{}
+        \addtocounter{iFator}{2}
+        %i=\thei
+        \setcounter{produtoAux}{\value{iFator}*\value{iFator}}
+        %produto=\theprodutoAux\hfill\break
+        %\setcounter{produto}{#1+1}
+        %\setcounter{produto}{\value{produto}}
+        %\ifthenelse{\value{produto}<#1}{menor}{maior}
+    }
+    saindo do while
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
